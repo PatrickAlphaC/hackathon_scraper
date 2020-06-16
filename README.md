@@ -26,6 +26,7 @@ Have fun!
 
 ### TODO
 1. Github organizations not accounted for
-2. Gitlab not accounted for
-3. Integration with other hackathon platforms (Devfolio, Gitcoin)
-4. More analytics metrics should be outputted
+2. If a hackathon has multiple pages of submissions it only gets the first page
+3. Gitlab not accounted for
+4. Integration with other hackathon platforms (Devfolio, Gitcoin)
+5. More analytics metrics should be outputted
