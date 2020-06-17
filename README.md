@@ -24,9 +24,16 @@ This will show me all the hackathon submissions that recently ended that have th
 
 Have fun!
 
+### Testing
+Note: Due to github rate limiting you have to test each one at a time
+
+Run run `cd tests; pytest -v` or to run a single test `cd tests; pytest -v -k test_repo_has_keyword`
+
 ### TODO
-1. Github organizations not accounted for
-2. If a hackathon has multiple pages of submissions it only gets the first page
-3. Gitlab not accounted for
-4. Integration with other hackathon platforms (Devfolio, Gitcoin)
-5. More analytics metrics should be outputted
+- [x] Github organizations accounted for
+- [x] If a hackathon has multiple pages of submissions it only gets the first page
+- [ ] Gitlab accounted for
+- [ ] Devfolio Integration
+- [ ] Gitcoin integration
+- [ ] More analytics metrics 
+- [ ] Github OAuth key added so we don't get rate limited and have to run induvidual tests

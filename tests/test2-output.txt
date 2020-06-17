@@ -1,0 +1,1 @@
+2020-06-16 22:52:18.749227["{'url': 'https://alphavhack.devpost.com/', 'prizes': 165375, 'platform': 'devpost'}", "{'url': 'https://alphavhack.devpost.com/', 'prizes': 165375, 'platform': 'devpost'}"]

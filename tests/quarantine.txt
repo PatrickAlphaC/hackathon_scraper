@@ -1,0 +1,2 @@
+tests/test_github_follow_up.py::test_github_follow_up_two_repos_and_org
+tests/test_github_follow_up.py::test_repo_has_keyword
