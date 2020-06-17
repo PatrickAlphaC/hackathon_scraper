@@ -24,13 +24,24 @@ This will show me all the hackathon submissions that recently ended that have th
 
 Sample output:
 ```
+$ python github_follow_up.py --github-keyword chainlink
+_________________________________
 Total submissions: 53 + 45 = 98
 2020-06-16 23:31:14.815999
  No projects had that keyword :(
 ```
 
 ```
-
+$ python github_follow_up.py --github-keyword const --input-file tests/test_data.json 
+_________________________________
+Total submissions: 5 + 45 = 50
+2020-06-16 23:40:15.635757
+ Number of devpost hackathon projects 2
+INFO:root:[{'url': 'https://alphavhack.devpost.com/', 'prizes': 165375, 'platform': 'devpost'}, {'url': 'https://alphavhack.devpost.com/', 'prizes': 165375, 'platform': 'devpost'}]
+INFO:root: Average prize pool of submissions: 165375.0
+ Number of gitcoin hackathon projects 3
+INFO:root:['/hackathon/GitxChange/projects/', '/hackathon/GitxChange/projects/', '/hackathon/GitxChange/projects/']
+INFO:root: Average prize pool of submissions: 110250.0
 ```
 Have fun!
 
