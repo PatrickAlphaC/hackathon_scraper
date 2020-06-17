@@ -19,7 +19,7 @@ log.basicConfig(level=log.INFO)
 @click.option('--github-keyword', required=True, help='What project youre looking for in github')
 @click.option('--input-file', default='next_week.json', help='What projects to check out')
 @click.option('--output-file', default='results.txt', help='What projects to check out')
-@click.option('--gitcoin', default=True, help='What projects to check out')
+@click.option('--gitcoin/--no-gitcoin', default=True, help='What projects to check out')
 def github_follow_up(github_keyword, input_file, output_file, gitcoin):
     # Opening JSON file
     hackathons = read_from_file(input_file)
@@ -31,12 +31,14 @@ def github_follow_up(github_keyword, input_file, output_file, gitcoin):
             github_keyword)
         click.echo("Total submissions: {} + {} = {}".format(total_submissions,
                                                             total_gitcoin_submissions, (total_submissions + total_gitcoin_submissions)))
+        output_metrics(keyworded_hackathon_projects,
+                       gitcoin_keyworded_hackathons=gitcoin_keyworded_hackathon_projects)
+        output_to_file(keyworded_hackathon_projects, output_file,
+                       gitcoin_keyworded_hackathons=gitcoin_keyworded_hackathon_projects)
     else:
         click.echo("Total submissions: {}".format(total_submissions))
-    output_metrics(keyworded_hackathon_projects,
-                   gitcoin_keyworded_hackathon_projects)
-    output_to_file(keyworded_hackathon_projects,
-                   gitcoin_keyworded_hackathon_projects, output_file)
+        output_metrics(keyworded_hackathon_projects)
+        output_to_file(keyworded_hackathon_projects, output_file)
 
 
 def get_hackathons_with_keyword(hackathons, github_keyword):
@@ -175,35 +177,43 @@ def read_from_file(input_file):
     return hackathons
 
 
-def output_to_file(keyworded_hackathons, gitcoin_keyworded_hackathons, output_file):
+def output_to_file(keyworded_hackathons, output_file, gitcoin_keyworded_hackathons=None):
     file = open(output_file, "a+")
     file.write(str(datetime.now()))
     file.write(str([str(hackathon) for hackathon in keyworded_hackathons]))
-    file.write(str([str(hackathon)
-                    for hackathon in gitcoin_keyworded_hackathons]))
+    if gitcoin_keyworded_hackathons:
+        file.write(str([str(hackathon)
+                        for hackathon in gitcoin_keyworded_hackathons]))
     file.close()
 
 
-def output_metrics(keyworded_hackathons, gitcoin_keyworded_hackathons):
+def output_metrics(keyworded_hackathons, gitcoin_keyworded_hackathons=None):
     click.echo(str(datetime.now()))
     total_prize_pool = 0
     for hackathon in keyworded_hackathons:
         total_prize_pool += hackathon['prizes']
 
-    if len(keyworded_hackathons) > 0 and len(gitcoin_keyworded_hackathons) > 0:
+    if len(keyworded_hackathons) > 0:
         click.echo(" Number of devpost hackathon projects {}".format(
             len(keyworded_hackathons)))
         log.info(keyworded_hackathons)
         log.info(" Average prize pool of submissions: " +
                  str(total_prize_pool / len(keyworded_hackathons)))
         # gitcoin
-        click.echo(" Number of gitcoin hackathon projects {}".format(
-            len(gitcoin_keyworded_hackathons)))
-        log.info(gitcoin_keyworded_hackathons)
-        log.info(" Average prize pool of submissions: " +
-                 str(total_prize_pool / len(gitcoin_keyworded_hackathons)))
+    if gitcoin_keyworded_hackathons:
+        if len(gitcoin_keyworded_hackathons) > 0:
+            click.echo(" Number of gitcoin hackathon projects {}".format(
+                len(gitcoin_keyworded_hackathons)))
+            log.info(gitcoin_keyworded_hackathons)
+            log.info(" Average prize pool of submissions: " +
+                     str(total_prize_pool / len(gitcoin_keyworded_hackathons)))
+            return
+        else:
+            if len(keyworded_hackathons) <= 0:
+                click.echo(" No projects had that keyword :(")
     else:
-        click.echo(" No projects had that keyword :(")
+        if len(keyworded_hackathons) <= 0:
+            click.echo(" No projects had that keyword :(")
 
 
 def main():
