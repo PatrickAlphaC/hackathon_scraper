@@ -6,6 +6,8 @@ Hi all, this repo is to help out getting OKRs for DevRel folks!
 
 For this, you need to install selenium with firefox to run the gitcoin portion. [You can find out how to do that here](https://towardsdatascience.com/data-science-skills-web-scraping-javascript-using-python-97a29738353f)
 
+Otherwise, just add the flag `--no-gitcoin`
+
 Here is how it works:
 
 1. Every week run `python scrape.py --hackathon-keyword <KEYWORD_HERE>`
