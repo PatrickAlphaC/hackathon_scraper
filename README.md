@@ -8,7 +8,7 @@ For this, you need to install selenium with firefox to run the gitcoin portion. 
 
 Otherwise, just add the flag `--no-gitcoin`
 
-Here is how it works:
+# Here is how it works:
 
 1. Every week run `python scrape.py --hackathon-keyword <KEYWORD_HERE>`
 With `<KEYWORD_HERE> being the type of hackathon you're looking for
