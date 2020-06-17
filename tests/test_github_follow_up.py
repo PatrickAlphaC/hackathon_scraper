@@ -23,7 +23,7 @@ def test_get_hackathons_with_keyword():
     hackathons = github_follow_up.read_from_file("test_data.json")
     keyworded_hackathons = github_follow_up.get_hackathons_with_keyword(
         hackathons, "healthinsurance")
-    assert len(keyworded_hackathons) == 1
+    assert len(keyworded_hackathons[0]) == 1
 
 
 def test_is_organization():

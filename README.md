@@ -22,6 +22,16 @@ Then I run:
 `python github_follow_up.py --github-keyword chainlink`
 This will show me all the hackathon submissions that recently ended that have their github repo have that keyword in it.
 
+Sample output:
+```
+Total submissions: 53 + 45 = 98
+2020-06-16 23:31:14.815999
+ No projects had that keyword :(
+```
+
+```
+
+```
 Have fun!
 
 ### Testing
@@ -34,6 +44,6 @@ Run run `cd tests; pytest -v` or to run a single test `cd tests; pytest -v -k te
 - [x] If a hackathon has multiple pages of submissions it only gets the first page
 - [ ] Gitlab accounted for
 - [ ] Devfolio Integration
-- [ ] Gitcoin integration
+- [x] Gitcoin integration
 - [ ] More analytics metrics 
 - [ ] Github OAuth key added so we don't get rate limited and have to run induvidual tests

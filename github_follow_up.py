@@ -19,16 +19,20 @@ log.basicConfig(level=log.INFO)
 @click.option('--github-keyword', required=True, help='What project youre looking for in github')
 @click.option('--input-file', default='next_week.json', help='What projects to check out')
 @click.option('--output-file', default='results.txt', help='What projects to check out')
-def github_follow_up(github_keyword, input_file, output_file):
+@click.option('--gitcoin', default=True, help='What projects to check out')
+def github_follow_up(github_keyword, input_file, output_file, gitcoin):
     # Opening JSON file
     hackathons = read_from_file(input_file)
     keyworded_hackathon_projects, total_submissions = get_hackathons_with_keyword(
         hackathons, github_keyword)
     # Gitcoin you don't have to start from a week ago, you can just scrape the most recently finished
-    gitcoin_keyworded_hackathon_projects, total_gitcoin_submissions = get_gitcoin_hackathons(
-        github_keyword)
-    click.echo("Total submissions: {} + {} = {}".format(total_submissions,
-                                                        total_gitcoin_submissions, (total_submissions + total_gitcoin_submissions)))
+    if gitcoin:
+        gitcoin_keyworded_hackathon_projects, total_gitcoin_submissions = get_gitcoin_hackathons(
+            github_keyword)
+        click.echo("Total submissions: {} + {} = {}".format(total_submissions,
+                                                            total_gitcoin_submissions, (total_submissions + total_gitcoin_submissions)))
+    else:
+        click.echo("Total submissions: {}".format(total_submissions))
     output_metrics(keyworded_hackathon_projects,
                    gitcoin_keyworded_hackathon_projects)
     output_to_file(keyworded_hackathon_projects,
