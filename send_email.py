@@ -37,10 +37,10 @@ def send_email(to_contacts, msg_content, subject):
     <html>
         <body>
             <h1>This is week in Github Oracles!</h1>
-            <h2>Number of repos that people have been active per oracle system:<h2>
+            <h2>Number of repos that people have been active per oracle system:</h2>
             {number_of_projects}
-            <h2>Repositories associated with active code<h2>
-            <p>{code}<p>
+            <h2>Repositories associated with active code</h2>
+            {code}
         </body>
     </html>
     """.format(number_of_projects = number_of_projects, code=json.loads(msg_content))

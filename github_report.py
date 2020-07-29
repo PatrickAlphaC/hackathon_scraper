@@ -24,6 +24,7 @@ def github_report(ctx, keywords, days_back, send_mail_to):
     keywords = keywords.split(",")
     github_projects_with_updates_map = {}
     for keyword in keywords:
+        print(keyword)
         driver = github_login()
         driver = get_list_of_projects(driver, keyword)
         html = driver.page_source
@@ -62,11 +63,17 @@ def get_list_of_projects(driver, keyword):
     driver.find_element_by_xpath(
         '/html/body/div[4]/main/div/div[2]/nav[1]/a[2]').click()
     time.sleep(1)
-    driver.find_element_by_xpath(
-        '/html/body/div[4]/main/div/div[3]/div/div[1]/details/summary').click()
+    try:
+        driver.find_element_by_xpath(
+            '/html/body/div[4]/main/div/div[3]/div/div[1]/details/summary').click()
+    except:
+        pass
     time.sleep(1)
-    driver.find_element_by_xpath(
-        '/html/body/div[4]/main/div/div[3]/div/div[1]/details/details-menu/div[2]/a[2]').click()
+    try:
+        driver.find_element_by_xpath(
+            '/html/body/div[4]/main/div/div[3]/div/div[1]/details/details-menu/div[2]/a[2]').click()
+    except:
+        pass
     time.sleep(3)
     return driver
 
