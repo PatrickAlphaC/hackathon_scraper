@@ -114,7 +114,7 @@ def get_gitcoin_hackathons(github_keyword):
                 #     "https://gitcoin.co/{}".format(link.attrs['href']), timeout=(3.05, 27))
                 options = Options()
                 options.headless = True
-                driver = webdriver.Firefox()
+                driver = webdriver.Firefox(options=options)
                 driver.get("https://gitcoin.co/{}".format(link.attrs['href']))
                 time.sleep(20)
                 html = driver.page_source

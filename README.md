@@ -64,3 +64,11 @@ Run run `cd tests; pytest -v` or to run a single test `cd tests; pytest -v -k te
 - [x] Gitcoin integration
 - [ ] More analytics metrics 
 - [ ] Github OAuth key added so we don't get rate limited and have to run induvidual tests
+
+# The report aspect
+
+1. Set up schedule on your mac (if you are using one) and set the schedule to wake up at the specific time 
+2. setup the crontab job with `crontab -e`
+
+sample crontab:
+`1 7 * * MON cd ~/code/hackathon_scraper/ && python github_report.py`
