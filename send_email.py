@@ -26,9 +26,13 @@ def send_email(to_contacts, msg_content, subject):
     code = ''
     for oracle_project in json.loads(msg_content):
         number_of_projects = number_of_projects + '<p>' + oracle_project + \
-            ' projects: {}<p>'.format(
+            ' projects: {}</p>'.format(
                 len(json.loads(msg_content)[oracle_project]))
-        code = code + '<p>' + oracle_project + ':{}'.format(json.loads(msg_content)[oracle_project]) + '<p>'
+        code = code + '<p>' + oracle_project + ':</p>'
+        code = code + '<p>'
+        for url in json.loads(msg_content)[oracle_project]:
+            code = code + '{}'.format(url) + ", "
+        code = code + '</p>'
 
 
     print('SENDING MAIL')
@@ -43,7 +47,7 @@ def send_email(to_contacts, msg_content, subject):
             {code}
         </body>
     </html>
-    """.format(number_of_projects = number_of_projects, code=json.loads(msg_content))
+    """.format(number_of_projects = number_of_projects, code=code)
     msg.add_alternative(html, subtype='html')
 
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:

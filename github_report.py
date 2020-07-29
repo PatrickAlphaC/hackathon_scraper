@@ -58,7 +58,10 @@ def get_list_of_projects(driver, keyword):
         '/html/body/div[1]/header/div[3]/div/div/form/label/input[1]')
     search_bar.send_keys(Keys.CONTROL, 'a')
     search_bar.send_keys(Keys.BACKSPACE)
-    search_bar.send_keys(keyword + Keys.RETURN)
+    if keyword == 'chainlink':
+        search_bar.send_keys(keyword + " NOT fence" + Keys.RETURN)
+    else:
+        search_bar.send_keys(keyword + Keys.RETURN)
     time.sleep(4)
     driver.find_element_by_xpath(
         '/html/body/div[4]/main/div/div[2]/nav[1]/a[2]').click()
