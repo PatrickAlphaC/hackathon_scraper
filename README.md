@@ -8,6 +8,10 @@ For this, you need to install selenium with firefox to run the gitcoin portion. 
 
 Otherwise, just add the flag `--no-gitcoin`
 
+# To use
+`git clone https://github.com/PatrickAlphaC/hackathon_scraper.git`
+`cd hackathon_scraper`
+
 # If you want to run only the github report.
 
 If you'd like to just get the github report of basic keywords, here is what you'll need to do (you'll need selenium and firefox)
