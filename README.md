@@ -8,6 +8,15 @@ For this, you need to install selenium with firefox to run the gitcoin portion. 
 
 Otherwise, just add the flag `--no-gitcoin`
 
+# If you want to run only the github report.
+
+If you'd like to just get the github report of basic keywords, here is what you'll need to do (you'll need selenium and firefox)
+```
+github_report.py --keywords chainlink --days-back 7 --send-mail-to me@me.com
+```
+
+I run mine in a crontab so it runs automatically, and I get a report on repo activity every week. 
+
 # Here is how it works:
 
 1. Every week run `python scrape.py --hackathon-keyword <KEYWORD_HERE>`
